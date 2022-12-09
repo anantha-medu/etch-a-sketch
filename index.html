@@ -9,7 +9,27 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="container">
+    <h1>ETCH-A-SKETCH</h1>
+    
+    <div id="main-body">
+    
+        <div id="sidebar">
+            <div class="rangeslider">
+                <div><h3>Select number of squares per side</h3></div>
+                <input id="slide" type="range" min="1" max="100" step="5" value="10">
+                <div id="sliderAmount"></div>
+            </div>
+
+            <!-- <div>
+                <label for="colorpicker">Color Picker:</label>
+                <input type="color" id="colorpicker" value="#ff0000">
+                <button id="color-choice">Color</button>
+            </div> -->
+        </div>
+
+        <div id="container">
+        </div>
+
         
     </div>
 </body>

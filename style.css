@@ -1,9 +1,9 @@
 #container
 {
-    width: 500px;
-    height: 500px;
-    max-width: 500px;
-    max-height: 500px;
+    width: 750px;
+    height: 750px;
+    max-width: 750px;
+    max-height: 750px;
     border: 1px black solid;
 
     display: flex;
@@ -13,4 +13,24 @@
 .pixel
 {
     border: 1px black solid;
+}
+
+#sidebar
+{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+#main-body
+{
+    display: flex;
+    justify-content: center;
+    gap: 25%;
+}
+
+h1
+{
+    text-align: center;
+    margin-bottom: 50px;
 }
