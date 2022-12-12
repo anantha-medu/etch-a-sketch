@@ -1,7 +1,11 @@
 const container = document.getElementById("container");
 
-let bgroundColor;
+const DEFAULT_BACKGROUND = "red";
+const DEFAULT_GRIDS = 10;
 
+let bgroundColor = DEFAULT_BACKGROUND;
+
+createGrid(DEFAULT_GRIDS);
 
 function createGrid(n)
 {
@@ -13,19 +17,19 @@ function createGrid(n)
         let cellDimension = (container.clientHeight - (2*n))/n;
         pixel.style.width = `${cellDimension}px`;
         pixel.style.height = `${cellDimension}px`;
-    }
+        pixel.addEventListener("mouseover", changeBackgroundOnHover);
 
-    const square = document.querySelectorAll('.pixel');
-    console.log(square);
-    square.forEach(cell => cell.addEventListener("mouseover", changeBackgroundOnHover()));
+    }
 }
 
 function clearGrid()
 {
-    while(container.hasChildNodes())
-    {
-        container.removeChild(container.firstChild);
-    }
+    // while(container.hasChildNodes())
+    // {
+    //     container.removeChild(container.firstChild);
+    // }
+
+    document.querySelectorAll('.pixel').forEach(e => e.remove());
 }
 
 
@@ -49,7 +53,16 @@ slide.onchange = function() {
 //     };
 //   } );
 
+const colorPicker = document.getElementById("color-choice");
+colorPicker.addEventListener("change", changeBackgroundColor);
+
+function changeBackgroundColor(e)
+{
+    bgroundColor = e.target.value;
+}
+
+
 function changeBackgroundOnHover(e)
 {
-    e.target.style.backgroundColor = "red";
+    e.target.style.backgroundColor = bgroundColor;
 }
