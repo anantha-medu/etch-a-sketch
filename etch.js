@@ -61,8 +61,30 @@ function changeBackgroundColor(e)
     bgroundColor = e.target.value;
 }
 
+const rainbow = document.getElementById('rainbow');
+rainbow.addEventListener('click', rainbowOnClick);
+
+function rainbowOnClick(e)
+{
+    e.target.classList.toggle('selected');
+}
+
+
+
+function randomHsl() {
+    return 'hsla(' + (Math.floor(Math.random()*360)) + ', 100%, 50%, 1)';
+}
 
 function changeBackgroundOnHover(e)
 {
-    e.target.style.backgroundColor = bgroundColor;
+    if(rainbow.classList.contains('selected'))
+    {
+        rainbowColor = randomHsl();
+        e.target.style.backgroundColor = rainbowColor;
+    }
+
+    else
+    {
+        e.target.style.backgroundColor = bgroundColor;
+    }
 }
