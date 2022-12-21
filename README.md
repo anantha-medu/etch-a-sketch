@@ -8,3 +8,5 @@ To Play:
 - choose a color of your choice from the color picker option
 - select rainbow colors button if you want to add random colors to the grid
 - Have fun! 
+
+This is a simple project to practice DOM manipulation skills

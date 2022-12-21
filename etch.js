@@ -42,16 +42,6 @@ slide.onchange = function() {
     createGrid(+this.value);
 }
 
-// const square = document.querySelectorAll('.pixel');
-// console.log(square);
-// Array.from.square.forEach(cell => cell.addEventListener("mouseover", changeBackgroundOnHover()));
-
-// document.body.addEventListener( 'mouseover', function ( event ) {
-//     if( event.target.classList == 'pixel' ) {
-//       changeBackgroundOnHover();
-//     };
-//   } );
-
 const colorPicker = document.getElementById("color-choice");
 colorPicker.addEventListener("change", changeBackgroundColor);
 
@@ -59,8 +49,12 @@ function changeBackgroundColor(e)
 {
     bgroundColor = e.target.value;
     rainbow.classList.remove('selected');
+    progressiveBlack.classList.remove('selected');
 
 }
+
+
+// Rainbow color function 
 
 rainbow.addEventListener('click', rainbowOnClick);
 
