@@ -3,6 +3,10 @@ const container = document.getElementById("container");
 const DEFAULT_BACKGROUND = "red";
 const DEFAULT_GRIDS = 10;
 
+const rainbow = document.getElementById('rainbow');
+
+const progressiveBlack =document.getElementById('black-shade');
+
 let bgroundColor = DEFAULT_BACKGROUND;
 
 createGrid(DEFAULT_GRIDS);
@@ -24,11 +28,6 @@ function createGrid(n)
 
 function clearGrid()
 {
-    // while(container.hasChildNodes())
-    // {
-    //     container.removeChild(container.firstChild);
-    // }
-
     document.querySelectorAll('.pixel').forEach(e => e.remove());
 }
 
@@ -59,28 +58,35 @@ colorPicker.addEventListener("change", changeBackgroundColor);
 function changeBackgroundColor(e)
 {
     bgroundColor = e.target.value;
+    rainbow.classList.remove('selected');
+
 }
 
-const rainbow = document.getElementById('rainbow');
 rainbow.addEventListener('click', rainbowOnClick);
 
 function rainbowOnClick(e)
 {
     e.target.classList.toggle('selected');
+    progressiveBlack.classList.remove('selected');
 }
 
-
-
-function randomHsl() {
-    return 'hsla(' + (Math.floor(Math.random()*360)) + ', 100%, 50%, 1)';
+// to generate random HSL color
+function generateRandomHsl() {
+    return 'hsla(' + (Math.floor(Math.random()*360)) + ', 100%, 45%, 1)';
 }
 
 function changeBackgroundOnHover(e)
 {
     if(rainbow.classList.contains('selected'))
     {
-        rainbowColor = randomHsl();
+        rainbowColor = generateRandomHsl();
         e.target.style.backgroundColor = rainbowColor;
+    }
+
+    else if(progressiveBlack.classList.contains('selected'))
+    {
+        e.target.style.backgroundColor = 'white';
+        blackBackgroundProgress(e);
     }
 
     else
@@ -88,3 +94,37 @@ function changeBackgroundOnHover(e)
         e.target.style.backgroundColor = bgroundColor;
     }
 }
+
+// progressive black shade
+
+progressiveBlack.addEventListener("click", moreBlackOnClick);
+
+let blackClickCount = 100;
+
+function moreBlackOnClick(e)
+{
+    e.target.classList.toggle('selected');
+    rainbow.classList.remove('selected');
+    if(e.target.classList.contains('selected'))
+    {
+        blackClickCount -= 10;
+    }
+}
+
+function blackBackgroundProgress(e)
+{   
+    if(blackClickCount < 0)
+    {
+        blackClickCount = 100;
+    }
+    e.target.style.filter = `brightness(${blackClickCount}%)`;
+    
+}
+
+// clearing the sketch
+
+const clearButton = document.getElementById('clear-color');
+clearButton.addEventListener('click', () => {
+    clearGrid();
+    createGrid(DEFAULT_GRIDS);
+})
